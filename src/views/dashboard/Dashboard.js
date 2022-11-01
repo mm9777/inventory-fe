@@ -11,7 +11,7 @@ const Dashboard = () =>{
     }, [])
 
     async function getProduct(){
-        let res =await fetch("http://localhost:5000/getDetails",{
+        let res =await fetch("https://inventorymanagmentbe.herokuapp.com/getDetails",{
             method:"GET",
             headers:{
                 "Content-Type": "application/json"

@@ -16,7 +16,7 @@ const AddProduct = () => {
         e.preventDefault();
         const {product, price, quantity,unit, myprice, myunit}= user;
         console.log(user)
-        const res = await fetch("http://localhost:5000/invetoryProduct",{
+        const res = await fetch("https://inventorymanagmentbe.herokuapp.com/invetoryProduct",{
             method: "POST",
             headers:{
                 "Content-Type": "application/json"

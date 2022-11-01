@@ -16,7 +16,7 @@ const ViewProduct = () => {
   }, [])
 
   async function getProductDetail() {
-    let res = await fetch('http://localhost:5000/getProduct', {
+    let res = await fetch('https://inventorymanagmentbe.herokuapp.com/getProduct', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

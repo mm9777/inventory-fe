@@ -28,7 +28,7 @@ const Billing = ()=>{
         e.preventDefault();
         const {product,quantity, discount, payment, billing_to, mobile_No}= user;
         console.log(user)
-        const res = await fetch("http://localhost:5000/Product",{
+        const res = await fetch("https://inventorymanagmentbe.herokuapp.com/Product",{
             method: "POST",
             headers:{
                 "Content-Type": "application/json"

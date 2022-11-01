@@ -12,7 +12,7 @@ const ViewBill = () => {
   }, [])
 
   async function getProductBill() {
-    let res = await fetch('http://localhost:5000/getBill', {
+    let res = await fetch('https://inventorymanagmentbe.herokuapp.com/getBill', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
