@@ -1,0 +1,208 @@
+.dashboard{
+    /* height: 500px;
+    width: 500px;
+    border: 1px;
+    row-gap: 10px; */
+    column-gap: 10px;
+    display: flex;
+    /* margin-left: 50px; */
+}
+.child{
+    height: 200px;
+    width: 400px;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-align: center;
+  
+}
+.product{
+    padding: 20px 10px 10px 20px;
+    flex:0 0 100%;
+    max-width: 100%;
+    width: 100%;
+
+}
+.addProduct{
+    padding-top: 40px;
+
+}
+button{
+    padding-top: 10px;
+    background-color:#ff4b2b;
+    margin-top: 20px;
+    height: 50px;
+    width: 140px;
+    border-radius: 10px;
+    /* text-decoration-color: #fff; */
+    border:0px;
+    color: #eee;
+
+
+}
+.Add{
+    margin-left: 500px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+*{
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  span {
+    font-size: 12px;
+  }
+  
+  .myContainer{
+    font-family: 'Montserrat', sans-serif;
+      background: #f6f5f7;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+  }
+  
+  .myForm{
+    background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 14px 28px rgb(0 0 0 / 20%), 0 10px 10px rgb(0 0 0 / 20%);
+      position: relative;
+      overflow: hidden;
+      width: 810px;
+      max-width: 100%;
+      min-height: 500px;
+  }
+  .sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+  }
+  
+  .form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all .6s ease-in-out;
+  }
+  
+  .form-container form {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .form-container input {
+    background: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+  }
+  .overlay-right {
+    right: 0;
+    transform: translateY(0);
+  }
+  
+  .overlay {
+    background: #ff416c;
+    background: linear-gradient(to right, #ff4b2b, #ff416c) no-repeat 0 0 / cover;
+    color: #f6f5f7;
+    transform: translateY(0);
+    transition: transform .6s ease-in-out;
+  }
+  .overlay-panel {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform .6s ease-in-out;
+  }
+  .overlay-panel h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+  }
+  .overlay-panel p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  .overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform .6s ease-in-out;
+    z-index: 100;
+  }
+  .d-flex, .loader-demo-box, .layouts-preview-main-wrapper .layouts-preview-wrapper .preview-item a .item-title, .navbar .navbar-menu-wrapper .navbar-nav, .navbar .navbar-menu-wrapper .navbar-nav .nav-item, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .navbar-dropdown .dropdown-item {
+    display: flex !important;
+  }
+  .navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+  }
+  .col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .view{
+    display: flex;
+  }
+  .viewProduct{
+    margin-left: 80px;
+
+  
+  }
+  .viewProducts{
+    margin-left: 100px;
+  }
+  .id{
+    margin-left: 20px;
+  }
+  
+  .btndan {
+    padding: 10px 10px 10px 10px;
+    color:#fff;
+    font-size: 13px;
+    width: 60px;
+    height: 30px;
+}
+.dataTables_filter{
+  margin-left: 950px;
+  margin-top: -10px;
+}
+/* .btndan {
+  padding: 5px 8px 5px 8px;
+  color: #fff;
+  font-size: 13px;
+} */
+ 
+ 
