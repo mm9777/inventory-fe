@@ -1,7 +1,23 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Table } from 'reactstrap'
-import Badge from 'react-bootstrap/Badge'
+import Spinner from '../../components/spinner'
+import BillModal1 from './BillModal1'
+ 
+import BillModel from './BillModel'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'jquery/dist/jquery.min.js';
+//Datatable Modules
+import "datatables.net-dt/js/dataTables.dataTables"
+import "datatables.net-dt/css/jquery.dataTables.min.css"
+import "datatables.net-buttons/js/dataTables.buttons.js"
+import "datatables.net-buttons/js/buttons.colVis.js"
+import "datatables.net-buttons/js/buttons.flash.js"
+import "datatables.net-buttons/js/buttons.html5.js"
+import "datatables.net-buttons/js/buttons.print.js"
+import "datatables.net-dt/css/jquery.dataTables.min.css"
+import $ from 'jquery'; 
+// import Invoice from './invoice'
 const ViewBill = () => {
   const [data1, setData1] = useState([{}])
   const [category, setCategory] = useState('')
@@ -12,9 +28,9 @@ const ViewBill = () => {
   }, [])
 
   async function getProductBill() {
-    let res = await fetch('https://inventorymanagmentbe.herokuapp.com/getBill', {
+    let res = await fetch('http://localhost:5000/getBill', {
       method: 'GET',
-      headers: {
+      headers: { 
         'Content-Type': 'application/json',
       },
     })
@@ -24,34 +40,67 @@ const ViewBill = () => {
 
 }
 console.log(data1)
+$(document).ready(function () {
+  setTimeout(function(){
+  $('#example').DataTable(
+      {
+          pagingType: 'full_numbers',
+            pageLength: 15,
+            processing: true,
+            dom: 'Bfrtip',
+                button : ['copy', 'csv', 'print'
+                ]
+      }
+  );
+  } ,
+  1000
+  );
+});
 
   return (
     <>
-    
-      <Table striped>
+    <div className="back-ground"> 
+    <h3>ViewBill</h3>
+    <BillModal1/>
+       
+      <Table striped id="example" className="display nowrap" style={{ width: '100%' }}>
       <thead>
         <tr>
           <th>s.no</th>
           {/* <th>Bill_id</th> */}
           <th>Customer Name</th>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Discount</th>
           <th>Payment</th>
           <th>Contact No</th>
+          <th>Date</th>
           <th>Action</th>
           
         </tr>
         </thead>
         <tbody>
-        {data1.map((val, i) => {
+        {data1?.map((val, i) => {
           return (
             <>
               <tr>
                 <td>{i+1}</td>
-                {/* <td>{val._id}</td> */}
                 <td>{val.billing_to}</td>
+                <td>{val.product?.map((d) => (
+                      <p style={{ margin: 0, padding: 0 }}>{d}{" "} </p>
+                    ))}</td>
+                <td>{val.quantity?.map((d) => (
+                      <p style={{ margin: 0, padding: 0 }}>{d}{" "}<span>{val.unit} </span> </p>
+                    ))}</td>
+                    <td>{val.discount?.map((d) => (
+                      <p style={{ margin: 0, padding: 0 }}>{d}{" % "} </p>
+                    ))}</td>
                 <td>{val.payment}</td>
                 <td>{val.mobile_No}</td>
+                <td>{val.updated_on?.split('T')[0]}</td>
                 <td>
-                <Badge bg="dark" onClick={() => setLgShow(true)}>View</Badge>
+                 {<BillModel data={val} idx={i+1}/>}
+                 {/* {<Invoice  data = {val}/>}  */}
                 
                 </td>
                 
@@ -61,17 +110,11 @@ console.log(data1)
         })}
         </tbody>
       </Table>
-      {/* <div className='view'>
-        <h5>S.No.</h5>
-        <h5 className='id'>_id</h5>
-        <h5 className='viewProducts'>product</h5>
-        <h5 className='viewProduct'>price</h5>
-        <h5 className='viewProduct'>quantity</h5>
-        <h5 className='viewProduct'>unit</h5>
-        <h5 className='viewProduct'>myprice</h5>
-        <h5 className='viewProduct'>myunit</h5>
-        <h5 className='viewProduct'>updated_on</h5>
-        </div> */}
+       
+        <Spinner />
+         
+      
+        </div>
     </>
   )
 }

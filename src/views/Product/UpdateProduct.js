@@ -1,10 +1,11 @@
-import { Modal } from "@coreui/coreui";
+import Modal from 'react-bootstrap/Modal';
 import React ,{useState} from "react";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
-const UpdateProduct = () => {
+import Model from "../Model/Model";
+const UpdateProduct = ({Product}) => {
     const [user, setUser] = useState({
-        product: "", price: "", quantity: "", unit: "", myprice: "", myunit: "",
+        product: "", price: "", quantity: "", unit: "", myprice: "", 
     });
     let name, value;
     const handleInputs = (e) =>{
@@ -15,21 +16,24 @@ const UpdateProduct = () => {
     }
     const PostData = async(e) =>{
         e.preventDefault();
-        const {product, price, quantity,unit, myprice, myunit}= user;
-        console.log(user)
-        const res = await fetch("http://localhost:5000//updatestock",{
+        const {product, price, quantity,unit, myprice}= user;
+        console.log("hhhhhhh")
+        const res = await fetch("http://localhost:5000/addStock",{
             method: "PATCH",
             headers:{
                 "Content-Type": "application/json"
             },
             body:JSON.stringify({
-                product,price,quantity, unit, myprice, myunit
+                product,price,quantity, unit, myprice
             })
         });
+        console.log(res)
         const data = await res.json();
+        console.log("ssss",data)
+    
         if(data.error){
             Swal.fire(
-                'invailid Data'
+                'Product is Already exist'
                 )
         
         }
@@ -39,10 +43,11 @@ const UpdateProduct = () => {
             )
         }
     }
+    
     return (
     
         <div > 
-            <h5>Add Product</h5>
+            <h5>UpdateProduct</h5>
         <div className="row">
             <div className="col-md-6">
             <div className="addProduct">
@@ -81,17 +86,21 @@ const UpdateProduct = () => {
                 </b>
                 </div>
                 
-                <div className="col-md-6">
+                {/* <div className="col-md-6">
                 <b>
                     <label className="addProduct">MyUnit</label><br></br>
                     <input type="text" name="myunit" placeholder="MyUnit" className="product" onChange={handleInputs} value={user.myunit}/>
                 </b>
-                </div>
+                </div> */}
                 
 
         </div>
-            <button className="Add" onClick={PostData}>Add</button>
+        <b>
+
+            <button className="Add1" onClick={PostData}>Add</button>
+        </b>
           
+            {/* {<Model/>} */}
             </div> 
             
         

@@ -9,95 +9,76 @@ import {useNavigate} from 'react-router-dom'
 
 function Signin() {
   const navigate = useNavigate();
-    const initialValues= {email: "", password: "" };
-    const [formValues, setFormValues] = useState(initialValues);
-    const [user,setUser]=useState(initialValues)
-    const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(true);
-  
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormValues({ ...formValues, [name]: value });
-      setUser({...user,[name]: value})
-    };
-  
-    const handleSubmit = async(e) => {
-      e.preventDefault();
-      setFormErrors(validate(formValues));
-      setIsSubmit(true);
-     const {email, password} = user;
-     const res = await fetch("https://inventorymanagmentbe.herokuapp.com/login",{
+  const [isFilled, setisFilled] = useState(false)
+  const [userDetail, setUserDetail] = useState({
+    email:'',
+    pass:''
+  })
+    // const [email,setEmail] = useState('')
+    // const [pass,setPass] = useState('')
+   const handleChange =(e)=>{
+   let key = e.target.name;
+   let val = e.target.value
+    setUserDetail((prev)=>({...prev,[key]:val}))
+
+   }
+    const handleSubmit = async(e) => {     
+      e.preventDefault();         
+     if(!userDetail.email && !userDetail.pass) {setisFilled(true); return} ;
+     setisFilled(false)
+     try{
+      const data = {
+        email:userDetail?.email,
+        password:userDetail?.pass
+      }
+
+     const res = await fetch("http://localhost:5000/login",{
       method:"POST",
       headers:{
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        email,password
-      })
+      body: JSON.stringify(data)
      });
-     const data = await res.json();
-     console.log(data)
-     if(data){
-      Swal.fire(
-        'Signin Successful',
-      // window.alert("Registration Successful")
-      navigate("/dashboard")
-      );
-      // window.alert("invailid use")
-    } 
-
-     else{
-      Swal.fire(
-        'invalid data',
-      // window.alert("Registration Successful")
-      // navigate("/dashboard")
-        
-      // window.alert("Registration Successful")
-
-    )}
+     console.log("res",res)
+     const result = await res.json();
+     console.log(result)
+     Swal.fire(
+      'SignUp Sucessfull',)
+    navigate("/dashboard")
+     
+    }catch(err) {
+      if(404){
+        Swal.fire(
+          'invailid '
+        )
+      }
+      else if(400){
+        Swal.fire(
+          'invailid Password'
+        )
+      }
+      else{
+        Swal.fire(
+          'Password is require'
+        )
+      }
     }
-
-    
-  
-    useEffect(() => {
-      console.log(formErrors);
-      if (Object.keys(formErrors).length === 0 && isSubmit) {
-        console.log(formValues);
-      }
-    }, [formErrors]);
-    const validate = (values) => {
-      const errors = {};
-      const regex =/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-      const result = regex.test(values.mail)
-      
-      if (!values.email) {
-        errors.email = "Email is required!";
-      } else if (result.error) {
-        errors.email = "This is not a valid email format!";
-      }
-      if (!values.password) {
-        errors.password = "Password is required";
-      } else if (values.password.length < 4) {
-        errors.password = "Password must be more than 4 characters";
-      } else if (values.password.length > 10) {
-        errors.password = "Password cannot exceed more than 10 characters";
-      }
-      return errors;
-    };
-  
+    }
+   
+  console.log(userDetail)
    return(  
     <>
       <div className="myContainer">
       <div className="myForm">
       <div className="form-container sign-in-container">
             <form id="logged">
+            {isFilled ? <small>fill all field</small> : null}
                 <h1>Sign in</h1>
                 <span>or use your account</span>
-                <input type="email" name="email" placeholder="Email" value={formValues.email} onChange={handleChange}/>
-                <input type="password" name="password" placeholder="Password"/>
-                <input type="text" name="logget"  placeholder="Password" style={{display:"none"}} value={formValues.password} onChange={handleChange}/>
+                <input type="text" name="email" placeholder="Email" value={userDetail.email} onChange={(e)=>{handleChange(e)}}/>
+                <input type="password" name="pass"  placeholder="Password"  value={userDetail.pass} onChange={(e)=>{handleChange(e)}}/>
               
-                <input type="submit" name="submit" onClick={handleSubmit} />
+                <button style={{backgroundColor:'blue'}} disabled={isFilled} onClick={handleSubmit}>Sign In</button>
             </form>
         </div>
         <div class="overlay-panel overlay-right overlay">
@@ -110,6 +91,6 @@ function Signin() {
       </div>
     </>
   )
-
+  
 }
-export default Signin;
+export default Signin

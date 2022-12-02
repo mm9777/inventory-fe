@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 const AddProduct = () => {
     const [user, setUser] = useState({
-        product: "", price: "", quantity: "", unit: "", myprice: "", myunit: "",
+        product: "", price: "", quantity: "", unit: "", myprice: "", 
     });
     let name, value;
     const handleInputs = (e) =>{
@@ -14,21 +14,24 @@ const AddProduct = () => {
     }
     const PostData = async(e) =>{
         e.preventDefault();
-        const {product, price, quantity,unit, myprice, myunit}= user;
-        console.log(user)
-        const res = await fetch("https://inventorymanagmentbe.herokuapp.com/invetoryProduct",{
+        const {product, price, quantity,unit, myprice}= user;
+        console.log("hhhhhhh")
+        const res = await fetch("http://localhost:5000/invetoryProduct",{
             method: "POST",
             headers:{
                 "Content-Type": "application/json"
             },
             body:JSON.stringify({
-                product,price,quantity, unit, myprice, myunit
+                product,price,quantity, unit, myprice
             })
         });
+        console.log(res)
         const data = await res.json();
+        console.log("ssss",data)
+    
         if(data.error){
             Swal.fire(
-                'invailid Data'
+                'Product is Already exist'
                 )
         
         }
@@ -56,14 +59,14 @@ const AddProduct = () => {
                 <b>
                 
                     <label className="addProduct">Price</label><br></br>
-                    <input type="Number" name="price" placeholder="Price" className="product" onChange={handleInputs} value={user.price} />
+                    <input type="text" name="price" placeholder="Price" className="product" onChange={handleInputs} value={user.price} />
                 </b>
                 </div>
                 <div className="col-md-6">
                 <b>
                 
                     <label className="addProduct">Quantity</label><br></br>
-                    <input type="Number" name="quantity" placeholder="Quantity" className="product" onChange={handleInputs} value={user.quantity} />
+                    <input type="text" name="quantity" placeholder="Quantity" className="product" onChange={handleInputs} value={user.quantity} />
                 </b>
                  </div>
                  <div className="col-md-6"> 
@@ -76,20 +79,24 @@ const AddProduct = () => {
                 <div className="col-md-6">
                 <b>
                     <label className="addProduct">MyPrice</label><br></br>
-                    <input type="Number" name="myprice" placeholder="MyPrice" className="product" onChange={handleInputs} value= {user.myprice} />
+                    <input type="text" name="myprice" placeholder="MyPrice" className="product" onChange={handleInputs} value= {user.myprice} />
                 </b>
                 </div>
                 
-                <div className="col-md-6">
+                {/* <div className="col-md-6">
                 <b>
                     <label className="addProduct">MyUnit</label><br></br>
                     <input type="text" name="myunit" placeholder="MyUnit" className="product" onChange={handleInputs} value={user.myunit}/>
                 </b>
-                </div>
+                </div> */}
                 
 
         </div>
+        <b>
+
             <button className="Add" onClick={PostData}>Add</button>
+        </b>
+        
           
             </div> 
         

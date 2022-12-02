@@ -1,0 +1,155 @@
+
+
+
+@page {
+	size: auto;
+	margin: 0;
+}
+
+@media print {
+    #myPrntbtn {
+        display :  none;
+    }
+}
+ 
+ 
+table, td {
+  border: 1px solid!important;
+}
+
+table {
+  width: 100%!important;
+  border-collapse: collapse;
+}
+
+.logo-pad
+{
+    padding-left: 345px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 15%;
+}
+
+
+.td-third
+{
+padding-left: 10px;
+    /*padding-top: 10px;*/
+    /*padding-bottom: 10px;*/
+}
+
+.td-last
+{
+padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 51%;
+}
+
+.td-desc
+{
+padding-left: 10px;
+    /*padding-top: 10px;*/
+    /*padding-bottom: 10px;*/
+    width:51%;
+}
+
+.td-fourth
+{
+
+    /*padding-top: 10px;*/
+    padding-bottom: 0px;
+}
+
+.td-first
+{
+    width: 15%;
+}
+
+.tax
+{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 1px;
+    margin-bottom: 8px;
+}
+
+.td-padmost
+{
+    height: 200px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.ul-list
+{
+    list-style: none;
+    margin-left: -33px;
+    width:60%;
+}
+
+.ul-lista
+{
+    list-style: none;
+    margin-left: -33px;
+    width:60%;
+    margin-top: 21px;
+}
+
+
+.desc
+{
+     
+    margin-top: -76px;
+}
+
+.mar-tab
+{
+    margin-top:-3px;
+     padding-top: 10px;
+    padding-bottom: 0px;
+}
+
+.td-wid
+{
+    width:78px;
+    height:20px;
+}
+
+.forin
+{
+      padding-left:15px;
+    margin-top: -66px;
+    font-size: 14px;
+}
+
+.sign
+{
+    padding-left:207px;
+}
+.btn-pri1{
+    padding: 5px;
+    margin-top: 10px;
+    background: #9784e5;
+    border: 1px solid #9784e5;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-left: 300px;
+
+}
+
+.btn-pri
+{
+    padding: 5px;
+    margin-top: 10px;
+    background: #9784e5;
+    border: 1px solid #9784e5;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+}
+

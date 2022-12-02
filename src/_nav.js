@@ -20,11 +20,8 @@ const _nav = [
     component: CNavItem,
     name: 'Dashboard',
     to: '/dashboard',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
+    icon: <CIcon icon={cilCalculator}   customClassName="nav-icon" />,
+     
   },
   // {
   //   component: CNavTitle,
@@ -46,42 +43,59 @@ const _nav = [
   //   component: CNavTitle,
   //   name: 'Components',
   // },
+   
+      
   {
-    component: CNavGroup,
+    component: CNavItem,
     name: 'Product',
-    to: '/Product',
-    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Add Product',
-        to: '/Product/AddProduct',
-      },
-      {
-        component: CNavItem,
-        name: 'View Product',
-        to: '/Product/ViewProduct',
-      },
-    ]
+    to: '/Product/Product',
+    icon: <CIcon icon={cilNotes}  customClassName="nav-icon" />,
+    
   },
   {
-    component: CNavGroup,
+    component: CNavItem,
     name: 'Bill',
+    to: '/Bill/Bill',
+    icon: <CIcon icon={cilChartPie}    customClassName="nav-icon" />,
+    
+  },
+      // {
+      //   component: CNavItem,
+      //   name: 'Product',
+      //   to: '/Product/Product',
+      // },
+    
+    
+  
+   
+       
+      
+    
+
+  
+  {
+    component: CNavGroup,
+    name: 'Reports',
     to: '/Bill',
     icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'Billing',
-        to: '/Bill/Billing',
+        name: 'BuyerReports',
+        to: '/Reports/BuyerReports',
       },
       {
         component: CNavItem,
-        name: 'View Bill',
-        to: '/Bill/ViewBill',
+        name: 'SellerReports',
+        to: '/Reports/SellerReports',
       },
+       
+      
     ]
-  }        
+
+  },
+  
+ 
 ]
 
 export default _nav

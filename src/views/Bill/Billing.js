@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Swal from "sweetalert2";
 const Billing = ()=>{
     const [user, setUser] = useState({
-        product: [],  quantity: [], discount: [], payment: "", billing_to: "",
+        products:[{product: [],  quantity: []}] , discount: [], payment: "", billing_to: "",unit:""
     });
     let name, value;
     const handleInputs = (e) =>{
@@ -26,29 +26,29 @@ const Billing = ()=>{
     }
     const PostData = async(e) =>{
         e.preventDefault();
-        const {product,quantity, discount, payment, billing_to, mobile_No}= user;
+        const {product,quantity, discount, payment, billing_to, mobile_No,unit}= user;
         console.log(user)
-        const res = await fetch("https://inventorymanagmentbe.herokuapp.com/Product",{
-            method: "POST",
+        const res = await fetch("http://localhost:5000/updatestock",{
+            method: "PATCH",
             headers:{
                 "Content-Type": "application/json"
             },
             body:JSON.stringify({
-                product,quantity, discount, payment, billing_to, mobile_No
+                product,quantity, discount, payment, billing_to, mobile_No, unit
             })
         });
         const data = await res.json();
-        // console.log(data)
-        if(!data){
-            Swal.fire("invailid Data");
+        console.log(data)
+        if(data){
+            Swal.fire("Billing Successful");
         }
         else{
-            Swal.fire("Billing Successful");
+            Swal.fire("invailid data");
         }
     }
      return(
         <div > 
-        <h5>Bill</h5>
+        <h3>Billing</h3>
     <div className="row">
     <div className="col-md-6">
             <b>
@@ -70,6 +70,13 @@ const Billing = ()=>{
             
                 <label className="addProduct">Quantity</label><br></br>
                 <input type="text" name="quantity" placeholder="Quantity" className="product" onChange={handleInputs} value={user.quantity} />
+            </b>
+            </div>
+            <div className="col-md-6">
+            <b>
+            
+                <label className="addProduct">Unit</label><br></br>
+                <input type="text" name="unit" placeholder="Unit" className="product" onChange={handleInputs} value={user.unit} />
             </b>
             </div>
             <div className="col-md-6">
